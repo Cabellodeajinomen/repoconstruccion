@@ -1,6 +1,7 @@
 package pe.edu.uls.demospringrest;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Date;
 
@@ -11,15 +12,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
+@RequestMapping("/producto")
 public class ControllerProducto {
 
-    @GetMapping("/producto/{id}")
+    @GetMapping("/{id}")
     public Producto consultarProducto(@PathVariable(name = "id") int id) {
         Producto p = new Producto(id, "Producto "+id, 2*id);
         return p;
     }
     
-    @PostMapping("/producto/nuevo")
+    @PostMapping("/nuevo")
     public Producto registrarProducto(@RequestBody Producto nuevo) {
         Date ahora = new Date();
         nuevo.setId((int)ahora.getTime()); 
