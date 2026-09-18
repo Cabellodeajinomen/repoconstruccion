@@ -26,15 +26,18 @@ public class ServiceRegistrarPedido {
     }
 
     public ResponsePedido registrarPedido(RequestPedido pedido) {
-        Pedido p = new Pedido();    
-        List<ResponsePedido.ResponsePedidoItem> lst = new ArrayList<ResponsePedido.ResponsePedidoItem>();
+        Pedido p = new Pedido();
+        List<ResponsePedido.ResponsePedidoItem> lst = new ArrayList<>();
+
         for (RequestPedidoItem item : pedido.items()) {
-            Producto producto = repoProducto.findById(item.idProducto()).get();
+            Producto producto = repoProducto.findById(item.idProducto())
+                    .orElseThrow(() -> new IllegalArgumentException("Producto no encontrado: " + item.idProducto()));
+
             p.agregarItem(producto, item.cantidad(), item.precioUnitario());
             lst.add(new ResponsePedido.ResponsePedidoItem(producto.getNombre(), item.cantidad()));
-     }
+        }
+
         repoPedido.save(p);
-        ResponsePedido respPedido = new ResponsePedido(p.getId(), lst);
-        return respPedido;
+        return new ResponsePedido(p.getId(), lst);
     }
 }

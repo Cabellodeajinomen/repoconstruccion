@@ -38,12 +38,23 @@ public class Pedido {
     }
 
     public void agregarItem(Producto producto, int cantidad, Double precioUnitario) {
+        if (producto == null) {
+            throw new IllegalArgumentException("Producto requerido");
+        }
+        if (cantidad <= 0) {
+            throw new IllegalArgumentException("Cantidad inválida");
+        }
+        if (precioUnitario == null || precioUnitario <= 0) {
+            throw new IllegalArgumentException("Precio unitario inválido");
+        }
+
         PedidoItem item = new PedidoItem();
         item.setProducto(producto);
         item.setPrecioUnitario(precioUnitario);
         item.setPedido(this);
         item.setCantidad(cantidad);
         items.add(item);
+        total += cantidad * precioUnitario;
     }
 
     public Integer getId() {
