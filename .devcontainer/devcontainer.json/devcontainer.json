@@ -1,26 +1,18 @@
 {
-  "name": "Java 25 + Gradle + Spring Boot",
-
-  "image": "mcr.microsoft.com/devcontainers/java:1-25-bookworm",
-
-  "features": {
-    "ghcr.io/devcontainers/features/java:1": {
-      "version": "25",
-      "installGradle": true,
-      "installMaven": false
-    }
-  },
-
+  "name": "Java 25 + Spring Boot",
+  "image": "mcr.microsoft.com/devcontainers/java:25-bookworm",
+  "forwardPorts": [8080],
   "customizations": {
     "vscode": {
+      "settings": {
+        "java.import.gradle.java.home": "/opt/java/openjdk"
+      },
       "extensions": [
         "vscjava.vscode-java-pack",
-        "vmware.vscode-spring-boot"
+        "vmware.vscode-spring-boot",
+        "humao.rest-client"
       ]
     }
   },
-
-  "forwardPorts": [
-    8080
-  ]
+  "remoteUser": "vscode"
 }
