@@ -4,9 +4,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController 
+@RequestMapping("/repuesto")
 public class ControllerRepuesto {
     private final ServiceRepuesto serviceRepuesto;
     private final MapperRepuesto mapperRepuesto;
@@ -16,7 +18,7 @@ public class ControllerRepuesto {
         this.mapperRepuesto = mapperRepuesto;
     }
 
-    @PostMapping("/repuesto/nuevo")
+    @PostMapping("/nuevo")
     public ResponseRepuesto guardarRepuesto(@RequestBody RequestRepuesto nuevo) {
         Repuesto repuesto = mapperRepuesto.toRepuesto(nuevo);
         repuesto = serviceRepuesto.registrarRepuesto(repuesto);
@@ -24,7 +26,7 @@ public class ControllerRepuesto {
         return response;
     }
     
-	@GetMapping("/repuesto/{id}")
+    @GetMapping("/{id}")
     public ResponseRepuesto consultarRepuesto(@PathVariable(name = "id") int id) {
         return mapperRepuesto.toResponse(serviceRepuesto.consultarRepuesto(id));
     }
