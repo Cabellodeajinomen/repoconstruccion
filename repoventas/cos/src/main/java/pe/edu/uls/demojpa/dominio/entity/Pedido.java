@@ -1,7 +1,6 @@
 package pe.edu.uls.demojpa.dominio.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,44 +17,11 @@ public class Pedido {
     )
     private Integer id;
 
-    @Column(name = "fecha_pedido", nullable = false)
-    private LocalDateTime fechaPedido;
-
-    private double total;
-
-    @OneToMany(
-        mappedBy = "pedido",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PedidoItem> items = new ArrayList<>();
 
-    @PrePersist
-    protected void prePersist() {
-        if (fechaPedido == null) {
-            fechaPedido = LocalDateTime.now();
-        }
-    }
-
-    public void agregarItem(Producto producto, int cantidad, Double precioUnitario) {
-        if (producto == null) {
-            throw new IllegalArgumentException("Producto requerido");
-        }
-        if (cantidad <= 0) {
-            throw new IllegalArgumentException("Cantidad inválida");
-        }
-        if (precioUnitario == null || precioUnitario <= 0) {
-            throw new IllegalArgumentException("Precio unitario inválido");
-        }
-
-        PedidoItem item = new PedidoItem();
-        item.setProducto(producto);
-        item.setPrecioUnitario(precioUnitario);
-        item.setPedido(this);
-        item.setCantidad(cantidad);
-        items.add(item);
-        total += cantidad * precioUnitario;
-    }
+    @Column(nullable = false)
+    private Double total = 0.0;
 
     public Integer getId() {
         return id;
@@ -65,27 +31,21 @@ public class Pedido {
         this.id = id;
     }
 
-    public LocalDateTime getFechaPedido() {
-        return fechaPedido;
-    }
-
-    public void setFechaPedido(LocalDateTime fechaPedido) {
-        this.fechaPedido = fechaPedido;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
     public List<PedidoItem> getItems() {
         return items;
     }
 
-    public void setItems(List<PedidoItem> items) {
-        this.items = items;
+    public Double getTotal() {
+        return total;
+    }
+
+    public void agregarItem(Producto producto, int cantidad, Double precioUnitario) {
+        PedidoItem item = new PedidoItem();
+        item.setPedido(this);
+        item.setProducto(producto);
+        item.setCantidad(cantidad);
+        item.setPrecioUnitario(precioUnitario);
+        items.add(item);
+        total += cantidad * precioUnitario;
     }
 }

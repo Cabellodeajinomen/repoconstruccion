@@ -1,19 +1,56 @@
+### Registrar producto
+POST https://humble-space-computing-machine-q7pxjppw65xph46jp-8080.app.github.dev/producto/marca/1001/nuevo
+Content-Type: application/json
+
+{
+ "nombre":"Alex",
+"descripcion": "Alex Rhoddo",
+	"precio":600,
+	"stock":3
+}
+
+### Ajustar stock
+POST https://humble-space-computing-machine-q7pxjppw65xph46jp-8080.app.github.dev/producto/stock/ajuste
+Content-Type: application/json
+
+{
+  "idProducto": 1027,
+  "stock": 3
+}
+
+### Consultar producto por id
+GET https://humble-space-computing-machine-q7pxjppw65xph46jp-8080.app.github.dev/producto/1007
 
 ### Registrar pedido
-POST https://special-palm-tree-wrg4pggwx454fgx6-8080.app.github.dev/pedido/nuevo
+POST https://humble-space-computing-machine-q7pxjppw65xph46jp-8080.app.github.dev/pedido/nuevo
 Content-Type: application/json
 
 {
  "items":[
    {
-     "idProducto": 1004,
-     "cantidad": 2,
-     "precioUnitario":3000,
-   },
-   {
-     "idProducto": 1005,
-     "cantidad": 3,
-     "precioUnitario":50,
+     "idProducto": 1027,
+     "cantidad": 5,
+     "precioUnitario":3000
    }
  ]
 }
+
+  JSON='
+{
+ "items":[
+   {
+     "idProducto": 1027,
+     "cantidad": 2,
+     "precioUnitario":3000
+   }
+ ]
+}'
+
+seq 1 2 | xargs -P 2 -I {} sh -c '
+  echo "REQUEST {}"
+  curl -s -w "\nHTTP: %{http_code}\n" \
+    -X POST https://probable-space-memory-9p4v44j7gj4h77v6-8080.app.github.dev/pedido/nuevo \
+    -H "Content-Type: application/json" \
+    -d "$1"
+  echo "----------------"
+' _ "$JSON"

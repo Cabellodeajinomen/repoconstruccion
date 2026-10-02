@@ -1,14 +1,18 @@
 package pe.edu.uls.demojpa.dominio.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "producto")
 public class Producto {
 
     @Id
@@ -16,13 +20,21 @@ public class Producto {
     @SequenceGenerator(name = "sec_producto", sequenceName = "sec_producto", allocationSize = 1)
     private Integer id;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_marca", nullable = false)
+    private Marca marca;
+
+    @Column(nullable = false, length = 150)
     private String nombre;
 
-    private Double precio;
+    @Column(nullable = false)
+    private Integer stock;
 
-    @ManyToOne
-    @JoinColumn(name = "id_marca")
-    private Marca marca;
+    @Column(length = 500)
+    private String descripcion;
+
+    @Column(nullable = false)
+    private double precio;
 
     public Integer getId() {
         return id;
@@ -30,6 +42,14 @@ public class Producto {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public void setMarca(Marca marca) {
+        this.marca = marca;
     }
 
     public String getNombre() {
@@ -40,19 +60,27 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public Double getPrecio() {
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
-    public Marca getMarca() {
-        return marca;
+    public Integer getStock() {
+        return stock;
     }
 
-    public void setMarca(Marca marca) {
-        this.marca = marca;
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 }
