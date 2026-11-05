@@ -6,25 +6,25 @@
       "version": "22"
     }
   },
+  "containerEnv": {
+    "NG_CLI_ANALYTICS": "false"
+  },
   "postCreateCommand": "npm install -g @angular/cli@20",
   "forwardPorts": [8080, 4200],
   "portsAttributes": {
     "8080": {
       "label": "Spring Boot API",
       "onAutoForward": "notify",
-      "visibility": "public"
+      "visibility": "private"
     },
     "4200": {
       "label": "Angular App",
       "onAutoForward": "notify",
-      "visibility": "public"
+      "visibility": "private"
     }
   },
   "customizations": {
     "vscode": {
-      "settings": {
-        "java.import.gradle.java.home": "/opt/java/openjdk"
-      },
       "extensions": [
         "vscjava.vscode-java-pack",
         "vmware.vscode-spring-boot",
