@@ -1,0 +1,16 @@
+.error {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.codigo {
+  font-size: 120px;
+  font-weight: bold;
+  color: var(--dorado);
+  line-height: 1;
+}
+
+.error p {
+  margin: 15px 0 25px;
+  font-size: 18px;
+}

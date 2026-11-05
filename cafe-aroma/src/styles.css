@@ -1,0 +1,100 @@
+:root {
+  --cafe-oscuro: #4b2e1e;
+  --cafe: #6f4e37;
+  --dorado: #d4a373;
+  --crema: #f8f1e7;
+  --blanco: #ffffff;
+  --texto: #333333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: var(--crema);
+  color: var(--texto);
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---- Menú superior ---- */
+.navbar {
+  background-color: var(--cafe-oscuro);
+  color: var(--blanco);
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar a {
+  color: var(--blanco);
+  text-decoration: none;
+  margin-left: 20px;
+  padding: 8px 14px;
+  border-radius: 6px;
+}
+
+.navbar a:hover,
+.navbar a.activo {
+  background-color: var(--dorado);
+  color: var(--cafe-oscuro);
+}
+
+/* ---- Contenido ---- */
+.contenido {
+  flex: 1;
+  padding: 40px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Clases reutilizables en todas las vistas ---- */
+.titulo-pagina {
+  color: var(--cafe-oscuro);
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.boton {
+  display: inline-block;
+  background-color: var(--cafe);
+  color: var(--blanco);
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.boton:hover {
+  background-color: var(--cafe-oscuro);
+}
+
+.tarjeta {
+  background-color: var(--blanco);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ---- Pie de página ---- */
+.footer {
+  background-color: var(--cafe-oscuro);
+  color: var(--dorado);
+  text-align: center;
+  padding: 15px;
+}

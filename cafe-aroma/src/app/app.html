@@ -1,0 +1,15 @@
+<header class="navbar">
+  <div class="logo">☕ Café Aroma</div>
+  <nav>
+    <a routerLink="/" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+    <a routerLink="/productos" routerLinkActive="activo">Productos</a>
+  </nav>
+</header>
+
+<main class="contenido">
+  <router-outlet />
+</main>
+
+<footer class="footer">
+  © 2026 Café Aroma — Proyecto Angular
+</footer>

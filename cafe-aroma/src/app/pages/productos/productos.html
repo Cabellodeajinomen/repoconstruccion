@@ -1,0 +1,33 @@
+<h1 class="titulo-pagina">Nuestros Productos</h1>
+<p class="subtitulo">Total de productos: {{ productos.length }}</p>
+
+<div class="tarjeta">
+  <table class="tabla">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Producto</th>
+        <th>Categoría</th>
+        <th>Precio</th>
+        <th>Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (p of productos; track p.id) {
+        <tr>
+          <td>{{ p.id }}</td>
+          <td>{{ p.nombre }}</td>
+          <td>{{ p.categoria }}</td>
+          <td>S/ {{ p.precio.toFixed(2) }}</td>
+          <td>
+            @if (p.stock > 0) {
+              <span class="disponible">{{ p.stock }} unid.</span>
+            } @else {
+              <span class="agotado">Agotado</span>
+            }
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
