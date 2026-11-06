@@ -1,0 +1,163 @@
+.contenedor {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+h2 {
+  color: #4b2c83;
+  text-align: center;
+}
+
+/* ---------- FORMULARIO ---------- */
+.formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* 2 columnas */
+  gap: 16px 24px;
+  background: linear-gradient(135deg, #f3e8ff, #e0f2fe);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  margin-bottom: 30px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo > label {
+  font-weight: 600;
+  color: #4b2c83;
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+textarea,
+select {
+  padding: 9px 12px;
+  border: 2px solid #c4b5fd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+}
+
+/* Borde rojo campo  inválido o tocado */
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: #ef4444;
+}
+
+.radios {
+  display: flex;
+  gap: 15px;
+  padding-top: 6px;
+}
+
+.radios label {
+  font-weight: normal;
+  color: #333;
+  cursor: pointer;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+button[type="submit"] {
+  grid-column: span 2;   /* ocupa las 2 columnas */
+  padding: 12px;
+  background-color: #7c3aed;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background-color: #5b21b6;
+}
+
+button[type="submit"]:disabled {
+  background-color: #a5a5a5;
+  cursor: not-allowed;
+}
+
+/* ---------- TABLA ---------- */
+.vacio {
+  text-align: center;
+  color: #777;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+thead {
+  background-color: #4b2c83;
+  color: white;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f3e8ff;
+}
+
+tbody tr:hover {
+  background-color: #e0f2fe;
+}
+
+.btn-eliminar {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-eliminar:hover {
+  background-color: #b91c1c;
+}
+
+/* En pantallas pequeñas, una sola columna */
+@media (max-width: 700px) {
+  .formulario {
+    grid-template-columns: 1fr;
+  }
+  button[type="submit"] {
+    grid-column: span 1;
+  }
+}
