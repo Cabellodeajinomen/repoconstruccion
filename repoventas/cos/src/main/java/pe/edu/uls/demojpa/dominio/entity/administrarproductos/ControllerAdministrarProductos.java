@@ -1,5 +1,7 @@
 package pe.edu.uls.demojpa.dominio.entity.administrarproductos;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +19,13 @@ public class ControllerAdministrarProductos {
 
     public ControllerAdministrarProductos(ServiceAdministrarProductos service) {
         this.service = service;
+    }
+
+    @GetMapping("/productos")
+    public List<ResponseProducto> listarProductos() {
+        return service.listarProductos().stream()
+                .map(ResponseProducto::from)
+                .toList();
     }
 
     @PostMapping("/producto/marca/{idMarca}/nuevo")

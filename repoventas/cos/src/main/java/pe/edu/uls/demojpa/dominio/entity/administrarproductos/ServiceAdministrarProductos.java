@@ -1,5 +1,7 @@
 package pe.edu.uls.demojpa.dominio.entity.administrarproductos;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,6 +44,11 @@ public class ServiceAdministrarProductos {
         return repoProducto.findById(idProducto)
                 .orElseThrow(() -> new ProductoNoEncontradoException(
                         "Producto no encontrado: " + idProducto));
+    }
+
+    @Transactional(readOnly = true)
+    public List<Producto> listarProductos() {
+        return repoProducto.findAll();
     }
 
     @Transactional
